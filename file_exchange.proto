@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package example;
+
+service FileExchange {
+  rpc SendData(DataRequest) returns (DataResponse) {}
+  rpc SendString(StringRequest) returns (StringResponse) {}
+  rpc SendFile(stream FileChunk) returns (FileResponse) {}
+}
+
+message DataRequest {
+  int64 number = 1;
+}
+
+message DataResponse {
+  string confirmation = 1;
+}
+
+message StringRequest {
+  string text = 1;
+}
+
+message StringResponse {
+  string confirmation = 1;
+}
+
+message FileChunk {
+  string filename = 1;
+  bytes content = 2;
+}
+
+message FileResponse {
+  string confirmation = 1;
+}
